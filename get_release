@@ -1,3 +1,0 @@
-#!/bin/bash
-
-node -p 'require("os").release()'
