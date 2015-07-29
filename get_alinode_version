@@ -1,3 +1,9 @@
 #!/bin/bash
 
-node -p 'process.alinode'
+NODE=`which node`
+
+if [ -f "$HOME/.nodepath" ]; then
+  NODE=`cat $HOME/.nodepath`/node;
+fi
+
+$NODE -p 'process.alinode'
