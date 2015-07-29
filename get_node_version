@@ -6,4 +6,4 @@ if [ -f "$HOME/.nodepath" ]; then
   NODE=`cat $HOME/.nodepath`/node;
 fi
 
-NODE -v
+$NODE -v
