@@ -1,0 +1,10 @@
+#!/bin/bash
+
+UPLOADER=`which uploader`
+
+if [ -f "$HOME/.nodepath" ]; then
+  UPLOADER=`cat $HOME/.nodepath`/uploader
+fi
+
+# ./uploader server filepath token id
+$UPLOADER $1 $2 $3 $4
