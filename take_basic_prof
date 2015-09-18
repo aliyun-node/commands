@@ -6,4 +6,4 @@ if [ -f "$HOME/.nodepath" ]; then
   NODE_KILL=`cat $HOME/.nodepath`/node-kill;
 fi
 
-$NODE_KILL --v8-options --prof --pid=$1
+$NODE_KILL --v8-options --prof --prof_cpp --pid=$1
