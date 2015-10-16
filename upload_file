@@ -6,5 +6,18 @@ if [ -f "$HOME/.nodepath" ]; then
   UPLOADER=`cat $HOME/.nodepath`/uploader
 fi
 
+FULL_PATH=$2
+TARGET_PATH=$2
+
+FILE=`echo $FULL_PATH |awk -F "\/" '{print $NF}'`
+DIR=`dirname $FULL_PATH`
+TAR=`which tar`
+
+if [ $TAR ]; then
+  cd $DIR
+  $TAR cfz $FULL_PATH".tgz" $FILE
+  TARGET_PATH=$FULL_PATH".tgz"
+fi
+
 # ./uploader server filepath token id
-$UPLOADER $1 $2 $3 $4
+$UPLOADER $1 $TARGET_PATH $3 $4
