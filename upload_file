@@ -11,12 +11,12 @@ TARGET_PATH=$2
 
 FILE=`echo $FULL_PATH |awk -F "\/" '{print $NF}'`
 DIR=`dirname $FULL_PATH`
-TAR=`which tar`
+GZIP=`which gzip`
 
-if [ $TAR ]; then
+if [ $GZIP ]; then
   cd $DIR
-  $TAR cfz $FULL_PATH".tgz" $FILE
-  TARGET_PATH=$FULL_PATH".tgz"
+  $GZIP $FILE
+  TARGET_PATH=$FULL_PATH".gz"
 fi
 
 # ./uploader server filepath token id
