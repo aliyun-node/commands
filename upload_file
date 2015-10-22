@@ -15,7 +15,7 @@ GZIP=`which gzip`
 
 if [ $GZIP ]; then
   cd $DIR
-  $GZIP -k $FILE
+  $GZIP -c $FILE > $FILE".gz"
   TARGET_PATH=$FULL_PATH".gz"
 fi
 
