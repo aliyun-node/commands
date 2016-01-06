@@ -9,15 +9,12 @@ fi
 FULL_PATH=$2
 TARGET_PATH=$2
 
-FILE=`echo $FULL_PATH |awk -F "\/" '{print $NF}'`
-DIR=`dirname $FULL_PATH`
 GZIP=`which gzip`
 
 if [ $GZIP ]; then
-  cd $DIR
-  $GZIP -c $FILE > $FILE".gz"
+  $GZIP -c $FULL_PATH > $FULL_PATH".gz"
   TARGET_PATH=$FULL_PATH".gz"
 fi
 
-# ./uploader server filepath token id
+#uploader server filepath token id
 $UPLOADER $1 $TARGET_PATH $3 $4
