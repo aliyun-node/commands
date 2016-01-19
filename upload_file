@@ -17,4 +17,4 @@ if [ $GZIP ]; then
 fi
 
 #uploader server filepath token id
-$UPLOADER $1 $TARGET_PATH $3 $4
+ENABLE_NODE_LOG=NO $UPLOADER $1 $TARGET_PATH $3 $4
