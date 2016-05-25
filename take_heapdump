@@ -1,9 +1,20 @@
 #!/bin/bash
+DIR=$WORK_DIR
 
-NODE_KILL=`which node-kill`
-
-if [ -f "$HOME/.nodepath" ]; then
-  NODE_KILL=`cat $HOME/.nodepath`/node-kill;
+if [ -z "$DIR" ]; then
+   echo '请配置 WORK_DIR 环境变量'
+   exit 1
 fi
 
-$NODE_KILL --heapdump $1
+kill -USR2 $1
+
+sleep 3
+
+FILE_NAME=`ls -rt $DIR/heapdump-*.*.heapsnapshot | tail -1`
+
+if [ -n "$FILE_NAME" ]; then
+	echo 'heapdump文件路径:'$FILE_NAME
+	echo '等待文件写入30s.'
+	exit 0
+fi
+
