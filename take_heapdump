@@ -8,9 +8,9 @@ fi
 
 kill -USR2 $1
 
-for ((i=1; i<=5; i ++))
+for ((i=1; i<=3; i ++))
 do
-    sleep 1
+    sleep 2
     FILE_NAME=`ls -rt $DIR/heapdump-*.*.heapsnapshot | tail -1`
 
     if [ -n "$FILE_NAME" ]; then

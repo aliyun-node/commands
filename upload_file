@@ -12,7 +12,7 @@ TARGET_PATH=$2
 GZIP=`which gzip`
 
 if [ $GZIP ]; then
-  $GZIP -c $FULL_PATH > $FULL_PATH".gz"
+  $GZIP $FULL_PATH
   TARGET_PATH=$FULL_PATH".gz"
 fi
 
