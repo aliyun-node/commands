@@ -8,13 +8,17 @@ fi
 
 kill -USR2 $1
 
-sleep 3
+for ((i=1; i<=5; i ++))
+do
+    sleep 1
+    FILE_NAME=`ls -rt $DIR/heapdump-*.*.heapsnapshot | tail -1`
 
-FILE_NAME=`ls -rt $DIR/heapdump-*.*.heapsnapshot | tail -1`
+    if [ -n "$FILE_NAME" ]; then
+	  echo 'heapdump文件路径:'$FILE_NAME
+	  echo '等待文件写入30s.'
+	  break
+    fi
+done
 
-if [ -n "$FILE_NAME" ]; then
-	echo 'heapdump文件路径:'$FILE_NAME
-	echo '等待文件写入30s.'
-	exit 0
-fi
+
 
