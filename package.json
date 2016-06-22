@@ -1,0 +1,22 @@
+{
+  "name": "commandx",
+  "version": "1.0.0",
+  "description": "commands of alinode agentx",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliyun-node/commands.git"
+  },
+  "keywords": [
+    "alinode",
+    "agentx",
+    "commands"
+  ],
+  "author": "alinode team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aliyun-node/commands/issues"
+  },
+  "homepage": "https://github.com/aliyun-node/commands#readme",
+  "dependencies": {}
+}
