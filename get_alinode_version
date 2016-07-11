@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export ENABLE_NODE_LOG=NO
+
 NODE=`which node`
 
 if [ -f "$HOME/.nodepath" ]; then

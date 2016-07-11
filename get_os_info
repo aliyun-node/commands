@@ -1,6 +1,14 @@
 #!/bin/bash
 
-node -e '
+export ENABLE_NODE_LOG=NO
+
+NODE=`which node`
+
+if [ -f "$HOME/.nodepath" ]; then
+  NODE=`cat $HOME/.nodepath`/node;
+fi
+
+$NODE -e '
 var os = require("os");
 console.log("%s/%s/%s/%s/%s", os.type(), os.hostname(), os.platform(), os.arch(), os.release());
 '
