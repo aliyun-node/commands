@@ -21,4 +21,4 @@ fi
 UPLOADER=`pwd`/uploader.js
 
 #uploader server filepath token id
-$NODE UPLOADER $1 $TARGET_PATH $3 $4
+$NODE "$UPLOADER" $1 $TARGET_PATH $3 $4
