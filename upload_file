@@ -1,9 +1,11 @@
 #!/bin/bash
 
-UPLOADER=`which uploader`
+export ENABLE_NODE_LOG=NO
+
+NODE=`which node`
 
 if [ -f "$HOME/.nodepath" ]; then
-  UPLOADER=`cat $HOME/.nodepath`/uploader
+  NODE=`cat $HOME/.nodepath`/node;
 fi
 
 FULL_PATH=$2
@@ -11,10 +13,12 @@ TARGET_PATH=$2
 
 GZIP=`which gzip`
 
-if [ $GZIP ]; then
+if [ $GZIP ] && [ -f "$FULL_PATH" ]; then
   $GZIP -c $FULL_PATH > $FULL_PATH".gz"
   TARGET_PATH=$FULL_PATH".gz"
 fi
 
+UPLOADER=`pwd`/uploader.js
+
 #uploader server filepath token id
-ENABLE_NODE_LOG=NO $UPLOADER $1 $TARGET_PATH $3 $4
+$NODE UPLOADER $1 $TARGET_PATH $3 $4

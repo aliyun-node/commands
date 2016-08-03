@@ -18,5 +18,8 @@
     "url": "https://github.com/aliyun-node/commands/issues"
   },
   "homepage": "https://github.com/aliyun-node/commands#readme",
-  "dependencies": {}
+  "dependencies": {
+    "formstream": "^1.0.0",
+    "urllib": "^2.2.2"
+  }
 }
