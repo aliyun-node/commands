@@ -1,6 +1,6 @@
 {
   "name": "commandx",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "commands of alinode agentx",
   "scripts": {},
   "repository": {
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/aliyun-node/commands#readme",
   "dependencies": {
     "formstream": "^1.0.0",
-    "urllib": "^2.11.0"
+    "urllib": "^2.11.0",
+    "tunnel-agent": "^0.4.3"
   }
 }
