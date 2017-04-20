@@ -11,6 +11,13 @@ fi
 FULL_PATH=$2
 TARGET_PATH=$2
 
+filesize=`ls -l $FULL_PATH|awk '{print $5}'`
+
+if [ "$filesize" = 0 ]; then
+  echo '空文件'
+  exit 1
+fi
+
 GZIP=`which gzip`
 
 if [ $GZIP ] && [ -f "$FULL_PATH" ]; then
