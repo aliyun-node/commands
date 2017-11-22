@@ -2,10 +2,8 @@
 
 export ENABLE_NODE_LOG=NO
 
-NODE=`which node`
+DIR=$(cd "$(dirname "$0")"; pwd)
+GET_NODE_EXE=$DIR/get_node_exe
+NODE_EXE=`$GET_NODE_EXE`
 
-if [ -f "$HOME/.nodepath" ]; then
-  NODE=`cat $HOME/.nodepath`/node;
-fi
-
-$NODE -p 'process.alinode'
+$NODE_EXE -p 'process.alinode'
