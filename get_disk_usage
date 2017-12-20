@@ -1,3 +1,19 @@
 #!/bin/bash
 
-df -P
+IsInContainer=false
+
+if grep /docker/ /proc/1/cgroup -qa; then
+  IsInContainer=true
+elif grep /lxc/ /proc/1/cgroup -qa; then
+  IsInContainer=true
+elif [ -f /.dockerenv ]; then
+  IsInContainer=true
+elif cat /proc/1/sched |head -n 1|grep -vqa "(1," ;then
+  IsInContainer=true
+fi
+
+if [ "$IsInContainer" = "true" ]; then
+  df -P /
+else
+  df -P
+fi
