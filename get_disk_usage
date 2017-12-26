@@ -2,13 +2,21 @@
 
 IsInContainer=false
 
-if grep /docker/ /proc/1/cgroup -qa; then
-  IsInContainer=true
-elif grep /lxc/ /proc/1/cgroup -qa; then
-  IsInContainer=true
-elif [ -f /.dockerenv ]; then
-  IsInContainer=true
-elif cat /proc/1/sched |head -n 1|grep -vqa "(1," ;then
+CGROUP=/proc/1/cgroup
+SCHED=/proc/1/sched
+DOCKERENV=/.dockerenv
+
+if [ -f "$CGROUP" ]; then
+  if grep /docker/ $CGROUP -qa; then
+    IsInContainer=true
+  elif grep /lxc/ $CGROUP -qa; then
+    IsInContainer=true
+  fi
+elif [ -f "$SCHED" ]; then
+  if cat $SCHED | head -n 1 | grep -vqa "(1,"; then
+    IsInContainer=true
+  fi
+elif [ -f "$DOCKERENV" ]; then
   IsInContainer=true
 fi
 
