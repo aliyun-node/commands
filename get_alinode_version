@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export ENABLE_NODE_LOG=NO
 
