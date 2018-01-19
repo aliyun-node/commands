@@ -2,13 +2,11 @@
 
 export ENABLE_NODE_LOG=NO
 
-NODE=`which node`
+DIR=$(cd "$(dirname "$0")"; pwd)
+GET_NODE_EXE=$DIR/get_node_exe
+NODE_EXE=`$GET_NODE_EXE`
 
-if [ -f "$HOME/.nodepath" ]; then
-  NODE=`cat $HOME/.nodepath`/node;
-fi
-
-$NODE -e '
+$NODE_EXE -e '
 var os = require("os");
 console.log("%s/%s/%s/%s/%s", os.type(), os.hostname(), os.platform(), os.arch(), os.release());
 '

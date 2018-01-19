@@ -2,11 +2,9 @@
 
 export ENABLE_NODE_LOG=NO
 
-NODE=`which node`
-
-if [ -f "$HOME/.nodepath" ]; then
-  NODE=`cat $HOME/.nodepath`/node;
-fi
+DIR=$(cd "$(dirname "$0")"; pwd)
+GET_NODE_EXE=$DIR/get_node_exe
+NODE_EXE=`$GET_NODE_EXE`
 
 FULL_PATH=$2
 TARGET_PATH=$2
@@ -25,7 +23,7 @@ if [ $GZIP ] && [ -f "$FULL_PATH" ]; then
   TARGET_PATH=$FULL_PATH".gz"
 fi
 
-UPLOADER=$(cd "$(dirname "$0")"; pwd)/uploader.js
+UPLOADER=$DIR/uploader.js
 
 #uploader server filepath token id
-$NODE "$UPLOADER" $1 $TARGET_PATH $3 $4
+$NODE_EXE "$UPLOADER" $1 $TARGET_PATH $3 $4
