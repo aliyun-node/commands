@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ $# != 0 ]; then
+  df -P $@
+  exit 0
+fi
+
 IsInContainer=false
 
 CGROUP=/proc/1/cgroup
