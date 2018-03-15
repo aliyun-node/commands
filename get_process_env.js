@@ -13,6 +13,11 @@ if (!pid) {
   process.exit(1);
 }
 
+if (require('os').type() !== 'Linux') {
+  console.log('Not support non-linux');
+  process.exit(1);
+}
+
 function getAlinodeVersion(pid) {
   const output = execSync(`ls -l /proc/${pid}/exe`, {
     encoding: 'utf8'
