@@ -14,6 +14,7 @@ var server = argv[0];
 var filepath = argv[1];
 var token = argv[2];
 var id = argv[3];
+var type = argv[4];
 
 // check args
 if (!server || !filepath || !token || !id) {
@@ -46,7 +47,7 @@ fs.stat(filepath, function (err, stat) {
   shasum.update([os.hostname(), token, nonce, id].join(''));
   var sign = shasum.digest('hex');
 
-  var url = 'http://' + server + '/files/' + id + '?nonce=' + nonce + '&sign=' + sign;
+  var url = 'http://' + server + '/files/' + id + '?nonce=' + nonce + '&sign=' + sign + '&type=' + type;
 
   var gateway = process.env.GATEWAY;
   if (gateway) {
