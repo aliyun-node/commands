@@ -14,14 +14,18 @@ DOCKERENV=/.dockerenv
 if [ -f "$CGROUP" ]; then
   if grep /docker/ $CGROUP -qa; then
     IsInContainer=true
+  elif grep /system.slice/docker $CGROUP -qa; then
+    IsInContainer=true
   elif grep /lxc/ $CGROUP -qa; then
     IsInContainer=true
   fi
-elif [ -f "$SCHED" ]; then
+fi
+if [ -f "$SCHED" ]; then
   if cat $SCHED | head -n 1 | grep -vqa "(1,"; then
     IsInContainer=true
   fi
-elif [ -f "$DOCKERENV" ]; then
+fi
+if [ -f "$DOCKERENV" ]; then
   IsInContainer=true
 fi
 
