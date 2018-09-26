@@ -44,7 +44,7 @@ fs.stat(filepath, function (err, stat) {
   var nonce = '' + parseInt((Math.random() * 100000000000), 10);
   // get signature
   var shasum = crypto.createHash('sha1');
-  shasum.update([os.hostname(), token, nonce, id].join(''));
+  shasum.update([process.env.agentid || os.hostname(), token, nonce, id].join(''));
   var sign = shasum.digest('hex');
 
   var url = 'http://' + server + '/files/' + id + '?nonce=' + nonce + '&sign=' + sign + '&type=' + type;
