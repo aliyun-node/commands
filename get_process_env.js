@@ -44,8 +44,7 @@ function getProcessEnv(pid) {
   });
   const lines = output.split('\u0000');
 
-  var env = {ENABLE_NODE_LOG: '', NODE_LOG_DIR: '/tmp'};
-  var pm2_env = {};
+  var env = { ENABLE_NODE_LOG: '', NODE_LOG_DIR: '/tmp' };
 
   for (var i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -56,17 +55,7 @@ function getProcessEnv(pid) {
     if (line.startsWith('NODE_LOG_DIR')) {
       env.NODE_LOG_DIR = line.split('=')[1];
     }
-
-    if (line.startsWith('pm2_env=')) {
-      try {
-        pm2_env = JSON.parse(line.substr('pm2_env='.length));
-      } catch (e) {
-      }
-    }
   }
-
-  env.NODE_LOG_DIR = env.NODE_LOG_DIR || pm2_env.NODE_LOG_DIR;
-  env.ENABLE_NODE_LOG = env.ENABLE_NODE_LOG || pm2_env.ENABLE_NODE_LOG;
 
   if (!env.NODE_LOG_DIR.endsWith('/')) {
     env.NODE_LOG_DIR += '/';
